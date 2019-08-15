@@ -1,5 +1,5 @@
 # NumPy
->一下内容均来自[这里](https://www.numpy.org.cn/),稍作学习整理
+>以下内容均来自[这里](https://www.numpy.org.cn/),稍作学习整理
 ## 基础篇
 ### 理解NumPy
 NumPy是一个功能强大的Python库，主要用于对多维数组执行计算。
