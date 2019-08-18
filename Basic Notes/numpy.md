@@ -88,3 +88,115 @@ a = np.array([[11, 12, 13, 14, 15],
 
 #### 数组索引
 
+```
+>>>import numpy as np
+>>>a = np.array([[1,2,3,4], [5,6,7,8], [9,10,11,12]])
+>>>b = a[:2, 1:3]
+#[[2 3]
+# [6 7]]
+---------------------------------------------------------
+# A slice of an array is a view into the same data, so #modifying it will modify the original array.
+>>>print(a[0, 1])   # Prints "2"
+>>>b[0, 0] = 77     # b[0, 0] is the same piece of data as 
+>>>print(a[0, 1])   # Prints "77"
+---------------------------------------------------------
+>>>a = np.array([[1,2], [3, 4], [5, 6]])
+>>>print(a[[0, 1, 2], [0, 1, 0]])  # Prints "[1 4 5]"
+---------------------------------------------------------
+```
+
+#### 广播（Broadcasting）
+
+> 允许numpy在执行算术运算时使用不同形状的数组,使代码更加简洁，效率更高
+
+假设向矩阵每一行都加上一个向量
+
+```python
+>>>import numpy as np
+
+>>>x = np.array([[1,2,3], [4,5,6], [7,8,9], [10, 11, 12]])
+>>>v = np.array([1, 0, 1])
+>>>y = np.empty_like(x)   
+
+>>>for i in range(4):
+    y[i, :] = x[i, :] + v
+
+# Now y is the following
+# [[ 2  2  4]
+#  [ 5  5  7]
+#  [ 8  8 10]
+#  [11 11 13]]
+print(y)
+```
+
+当矩阵x非常大时，在Python中计算显式循环可能会很慢，这里可以将每一行加上的v向量扩展成一个相同size的矩阵：
+
+```
+>>>vv = np.tile(v, (4, 1))   
+>>>print(vv)                 # Prints "[[1 0 1]
+                          #          [1 0 1]
+                          #          [1 0 1]
+                          #          [1 0 1]]"
+>>>y = x + vv  # Add x and vv elementwise
+>>>print(y)  # Prints "[[ 2  2  4
+          #          [ 5  5  7]
+          #          [ 8  8 10]
+          #          [11 11 13]]"
+```
+
+### 创建Numpy数组的不同方式
+
+- 使用numpy内部功能函数
+
+- 从Python列表转换
+
+```
+>>>list = [4,5,6]
+>>>array = np.array(list)
+```
+
+- 使用特殊库函数
+
+  - 创建一个填充0到1之间随机值的数组，使用random函数
+
+    ```python
+    >>>np.random.random((2,2))
+    #array([[0.1632794 , 0.34567049],
+    #      [0.03463241, 0.70687903]])
+    ```
+
+    
+
+### Numpy中的矩阵和向量
+
+#### 用numpy求解方程组：_**Ax=b**_
+$$
+A= \left[ \begin{matrix} 2&1&-2 \\ 3&0&1 \\ 1&1&-1 \end{matrix}\right]
+$$
+
+
+
+$$
+b=\left[\begin{matrix}-3\\5\\-2\end{matrix}\right]
+$$
+
+
+```python
+A = np.array([[2,1,-2],[3,0,1],[1,1,-1]])
+b = np.transpose(np.array([[-3,5,-2]]))
+```
+
+求解：
+
+```python
+x = np.linalg.solve(A,b)
+#[[-1.]
+# [-1.]
+# [2.]]
+```
+
+
+
+
+
+
