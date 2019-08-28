@@ -2,7 +2,9 @@
 
 >以下内容均来自[这里](https://www.numpy.org.cn/),稍作学习整理
 ## 基础篇
+
 ### 理解NumPy
+
 NumPy是一个功能强大的Python库，主要用于对多维数组执行计算。
 ```
 >>>import numpy as np 
@@ -194,6 +196,12 @@ x = np.linalg.solve(A,b)
 # [-1.]
 # [2.]]
 ```
+
+## 进阶篇
+
+### [这里](https://www.machinelearningplus.com/python/101-numpy-exercises-python/)有一些numpy的练习
+
+
 
 
 
